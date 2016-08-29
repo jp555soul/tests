@@ -1,0 +1,50 @@
+<!-- Enter your HTML code here -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Sample Title</title>
+<style>
+/* Add your css styles here */
+
+#containerBar{
+    position:absolute;
+    background:black;
+    height:20px;
+    width:100%;
+}
+
+#progressBar{
+    position:relative;
+    background:red;
+    height:100%;
+    left:0;
+    width:1%;
+    
+}
+</style>
+</head>
+<body>
+<div id="containerBar">
+    <div id="progressBar"></div>
+</div>
+<script>
+// Add your javascript here
+
+function progressBar(div,style,measure,start,at,duration){
+    if(!div) return;
+    var go= new Date().getTime(),
+        timer = setInterval(function(){
+            var increment = Math.min(1,(new Date().getTime()-go)/duration);
+            div.style[style] = (start+increment*(at-start))+measure;
+            if(go==1)
+            	clearInterval(timer);
+        },10);
+        div.style[style]=start+measure;
+}
+
+
+progressBar(document.getElementById('progressBar'),"width","%",0,100,1000);
+</script>
+</body>
+</html>
